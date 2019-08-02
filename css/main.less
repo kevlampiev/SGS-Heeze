@@ -27,7 +27,7 @@ body {
   //grid-template-rows: minmax(1fr, 237px) minmax(1fr, 1163px) minmax(1fr, 420px);
   //grid-template-columns: 1fr;
   font-size: 12px;
-  font-family: "Georgia", "Arial";
+  font-family: "Georgia", "Arial", sans-serif;
   color: rgb(151, 69, 95);
   line-height: 1.2;
   text-align: left;
@@ -39,6 +39,13 @@ body {
   border-bottom: 2px solid rgb(151, 69, 95);
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 508px) {
+  .quick-links-block {
+    justify-content: center;
+  }
 }
 
 .social-buttons {
@@ -93,6 +100,7 @@ header {
   margin-top: 0;
   .grayColorScheme;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
 
   img {
@@ -100,6 +108,12 @@ header {
     width: 80px;
     //float: left;
     margin-right: 25px;
+  }
+
+  @media (max-width: 550px) {
+    img {
+      display: none;
+    }
   }
 
   div:first-child {
@@ -113,6 +127,14 @@ header {
 
     p {
       padding-top: 20px;
+    }
+
+    @media (max-width: 453px) {
+      line-height: 1.5;
+      padding: 0;
+      margin: 0;
+      text-align: center;
+      width: 100%;
     }
   }
 
@@ -161,8 +183,13 @@ header {
       padding-left: 5px;
     }
   }
+  @media (max-width: 453px) {
+    //width: 100%;
+    display: none;
+  }
 }
 
+//Блок навигации
 nav {
   margin: 0 20px;
   padding: 0;
@@ -178,6 +205,18 @@ nav {
   li {
     display: inline-block;
     padding: 0 2px;
+  }
+
+  @media (max-width: 492px) {
+    ul {
+      padding: 0;
+    }
+
+    li {
+      display: block;
+      text-align: center;
+      border-bottom: 1px solid pink;
+    }
   }
 
   li a {
@@ -197,36 +236,81 @@ nav {
   }
 }
 
+main {
+  margin: 0 20px;
+  padding: 30px;
+  @media (max-width: 804px) {
+    padding: 30px 0;
+  }
+}
+
+//Издевательство над каруселью
 .carousel-inner img {
   width: 100%;
   height: 100%;
 }
 
-main {
-  margin: 0 20px;
-  padding: 30px;
-}
-
 main .carousel {
   position: relative;
+  //height: 400px;
+}
+
+main .carousel-indicators {
+  bottom: 15px;
+  //margin-top: 15px;
+}
+
+main .carousel-indicators > li {
+  width: 10px;
+  height: 10px;
+  border: 1px solid gray;
+  background-color: #999;
+  border-radius: 5px;
+}
+
+main .carousel-indicators .active {
+  background-color: #fff;
+  //border: 1px solid red;
 }
 
 .carousel-text {
   position: absolute;
-  top: 218px;
-  left: 434px;
+  bottom: 65px;
+  right: 15px;
   width: 456px;
   height: 113px;
   padding: 18px 30px;
   background-color: #adadad;
   color: black;
   opacity: 0.8;
+  @media (min-width: 558px) and (max-width: 804px) {
+    background: none;
+    color: #fff;
+  }
+  @media (max-width: 557px) {
+    display: none;
+  }
 }
 
+.additional-space-for-carousel {
+  min-height: 50px;
+}
+
+//Сетка для статей
 .annotation-grid {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr;
+
+  @media (min-width: 558px) and (max-width: 804px) {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+  }
+
+  @media (max-width: 557px) {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(6, 1fr);
+  }
 
   section {
     display: flex;
@@ -305,6 +389,22 @@ section:hover {
   grid-template-rows: 1fr 107px;
   grid-gap: 25px;
   margin-bottom: 25px;
+  @media (min-width: 867px) and(max-width: 896px) {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 107px;
+    grid-column-gap: 15px;
+  }
+
+  @media (min-width: 475px) and (max-width: 866px) {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 210px;
+    grid-column-gap: 15px;
+  }
+  @media (max-width: 474px) {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-column-gap: 15px;
+  }
 }
 
 .round-picture-article {
@@ -386,11 +486,19 @@ section:hover {
 
   grid-column: 1 / span 2;
   grid-row: 2;
+  @media (max-width: 896px) {
+    grid-column: 1;
+    grid-row: 3;
+  }
+  @media (max-width: 866px) {
+    justify-content: center;
+  }
   min-height: 105px;
   border-radius: 7px;
   padding: 0;
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
 
   div {
     margin: 21px 32px;
@@ -437,6 +545,17 @@ footer {
   grid-template-rows: 75px 1fr 1fr 62px;
   //grid-column: 36px;
   grid-auto-flow: column;
+  @media (max-width: 866px) {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 75px 1fr 1fr 75px 1fr 62px;
+    grid-template-areas:
+      "f-title-1          f-title-1"
+      "f-article-1        f-artice-1"
+      "f-article-2        f-artice-2"
+      "f-title-2          f-title-3"
+      "company-details    feedback"
+      "copyright-band     copyright-band";
+  }
 }
 
 .footer-title {
