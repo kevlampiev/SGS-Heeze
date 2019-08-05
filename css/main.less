@@ -540,21 +540,24 @@ section:hover {
 footer {
   .grayColorScheme;
   border-top: 5px solid #d2d2d2;
+}
+
+.footer-grid-container {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
-  grid-template-rows: 75px 1fr 1fr 62px;
-  //grid-column: 36px;
-  grid-auto-flow: column;
-  @media (max-width: 866px) {
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr;
+  //grid-template-areas:
+  //  "articleblock   articleblock companydetails feedback"
+  //  ".              .             .             ."
+  //  ".              .             .             .";
+  @media (min-width: 455px) and (max-width: 866px) {
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 75px 1fr 1fr 75px 1fr 62px;
-    grid-template-areas:
-      "f-title-1          f-title-1"
-      "f-article-1        f-artice-1"
-      "f-article-2        f-artice-2"
-      "f-title-2          f-title-3"
-      "company-details    feedback"
-      "copyright-band     copyright-band";
+    grid-template-rows: 1fr 1fr;
+  }
+
+  @media (max-width: 454px) {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
   }
 }
 
@@ -565,8 +568,110 @@ footer {
   color: rgb(51, 51, 51);
   line-height: 1.2;
   text-transform: capitalize;
-  padding: 41px 25px 25px 25px;
+  padding: 41px 0px 25px 0px;
 }
+
+.footer-article-block {
+  grid-area: "articleblock";
+  margin: 0;
+  padding: 0 0 0 25px;
+  grid-column-start: 1;
+  grid-column-end: 3;
+  @media (max-width: 454px) {
+    grid-column-start: 1;
+    grid-column-end: 2;
+  }
+  img {
+    width: 95px;
+    height: 95px;
+    float: left;
+    margin-right: 25px;
+  }
+
+  p {
+    font-size: 13px;
+    color: rgb(153, 153, 153);
+    line-height: 1.4;
+    text-align: left;
+    min-height: 50px;
+  }
+}
+
+.company-details {
+  grid-area: "companydetails";
+  padding: 5px 25px 25px 25px;
+  font-size: 12px;
+  color: rgb(153, 153, 153);
+  line-height: 1.6;
+  text-align: left;
+
+  a {
+    text-decoration: none;
+    color: rgb(151, 69, 95);
+  }
+
+  a:hover {
+    text-decoration: none;
+    color: #ee802f;
+  }
+}
+
+.feedback {
+  //background-color: #fff;
+  //grid-column: 3;
+  //grid-row: 2 / span 2;
+  grid-area: "feedbak";
+  @media (max-width: 454px) {
+    padding-left: 25px;
+  }
+
+  input,
+  textarea {
+    background-color: #fff;
+    color: rgb(153, 153, 153);
+    border-radius: 7px;
+    width: calc(100% - 10px);
+    min-height: 36px;
+    max-height: 108px;
+    margin: 6px 0;
+    border: 1px solid #fff;
+    padding: 0 5px;
+    //padding-left: 5px;
+  }
+
+  button {
+    .purpleColorScheme;
+    width: 78px;
+    height: 31px;
+    margin: 6px 0;
+    text-transform: uppercase;
+    border-radius: 7px;
+    border: none;
+  }
+
+  button:hover {
+    background-color: #ee802f;
+    color: #fff;
+  }
+}
+
+.copyright-band {
+  border-top: 1px solid darkgray;
+  padding: 10px 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  color: rgb(153, 153, 153);
+  line-height: 1.6;
+
+  p {
+    margin: 0;
+    padding: 0;
+  }
+}
+
+/*
 
 .footer-article {
   margin: 0;
@@ -589,9 +694,10 @@ footer {
 }
 
 .copyright-band {
-  grid-row: 4;
-  grid-column: 1 / span 3;
-  //background-color: green;
+  grid-row-start: 3;
+  grid-row-end: -1;
+  grid-column-start: 1;
+  grid-row-end: -1;
   border-top: 1px solid darkgray;
   padding: 10px 25px;
   display: flex;
@@ -607,57 +713,5 @@ footer {
   }
 }
 
-.company-details {
-  grid-column: 2;
-  grid-row: 2 / span 2;
-  padding: 5px 25px 25px 25px;
-  font-size: 12px;
-  color: rgb(153, 153, 153);
-  line-height: 1.6;
-  text-align: left;
 
-  a {
-    text-decoration: none;
-    color: rgb(151, 69, 95);
-  }
-
-  a:hover {
-    text-decoration: none;
-    color: #ee802f;
-  }
-}
-
-.feedback {
-  //background-color: #fff;
-  grid-column: 3;
-  grid-row: 2 / span 3;
-
-  input,
-  textarea {
-    background-color: #fff;
-    color: rgb(153, 153, 153);
-    border-radius: 7px;
-    width: calc(100% - 20px);
-    min-height: 36px;
-    max-height: 108px;
-    margin: 6px 25px;
-    border: 1px solid #fff;
-    padding: 0 5px;
-    //padding-left: 5px;
-  }
-
-  button {
-    .purpleColorScheme;
-    width: 78px;
-    height: 31px;
-    margin: 6px 25px;
-    text-transform: uppercase;
-    border-radius: 7px;
-    border: none;
-  }
-
-  button:hover {
-    background-color: #ee802f;
-    color: #fff;
-  }
-}
+*/
